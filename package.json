@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "lab2.js",
   "dependencies": {
+    "angular": "^1.4.8",
+    "bootstrap": "^3.3.6",
     "express": "^4.13.3"
   },
   "devDependencies": {},

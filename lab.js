@@ -369,7 +369,7 @@
 //////////////////////////////////////////////////////////////////////
 
 
-    var app = angular.module('schedule', []);
+    var app = angular.module('schedule', ['ngRoute']);
 
     app.filter("rawHtml", ['$sce', function ($sce) {
         return function (htmlCode) {
@@ -399,7 +399,7 @@
 
         this.scheduleSession = sS;
         this.courseName = "Introduction to Teapot Analysis";
-        this.courseDesignation = "CSSE-418"
+        this.courseDesignation = "CSSE-418";
         this.term = 2;
         this.termNames = ["Fall", "Winter", "Spring", "Summer"];
         this.fiscalYear = 2016;
@@ -449,6 +449,27 @@
             this.displayed.week = n;
             this.displayed.session = m;
         }
+    });
+
+    app.config(function($routeProvider) {
+        $routeProvider.when('/', {
+            templateUrl: 'views/index.html',
+            controller: 'ScheduleController'
+        });
+    });
+
+    app.directive('topHeader', function() {
+        return {
+            restrict: 'E',
+            templateUrl: "views/header.html"
+        };
+    });
+
+    app.directive('schedule', function() {
+        return {
+            restrict: 'E',
+            templateUrl: "views/schedule.html"
+        };
     });
 
 
