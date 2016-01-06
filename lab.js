@@ -453,7 +453,7 @@
 
     app.config(function($routeProvider) {
         $routeProvider.when('/', {
-            templateUrl: 'views/index.html',
+            templateUrl: 'views/schedule.html',
             controller: 'ScheduleController'
         });
     });
