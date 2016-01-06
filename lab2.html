@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="schedule" ng-controller="ScheduleController as schedule" style="text-align: center; overflow-y: scroll">
+<head>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="lab2.css">
+	<title>
+		{{schedule.courseDesignation}} Schedule
+	</title>
+</head>
+<body>
+	
+	<br>
+
+	<div id="top" class="container">
+		<div>
+			<h1>{{schedule.courseName}}</h1>
+			<h3>({{schedule.courseDesignation}})</h3>
+		</div>
+
+		<hr>
+		<h2>{{schedule.termNames[schedule.term - 1]}} {{schedule.fiscalYear}} ({{schedule.fiscalYear}}{{schedule.term}}0)</h2>
+	</div>
+	<br>
+
+	<div id="calendar" class="container panel panel-default">
+		<h4>
+			Schedule Overview: 
+		</h4>
+		<br>
+		<p style="text-align: left" ng-bind-html="schedule.overview | rawHtml">
+		</p>
+		<div id="inner-calendar" style="border: 1px solid #efefef">
+			<h4>Week:</h4>
+			<ul class = "nav nav-tabs">
+				<li ng-class="{'active' : schedule.displayed.week === -1}" ng-click="schedule.setDisplayed(-1,-1);">
+					<a href> All Weeks </a>
+				</li>
+				<li ng-repeat="week in schedule.weeks" ng-click="schedule.setDisplayed(week,-1);" ng-class="{'active' : schedule.displayed.week === week}">
+					<a href > Week {{week}} </a>
+				</li>
+			</ul>
+			<h4>Session: </h4><ul class = "nav nav-tabs">
+			<li ng-class="{active : (schedule.displayed.session === -1)}" ng-click="schedule.setDisplayed(schedule.displayed.week,-1);">
+				<a href> All Sessions </a>
+			</li>
+			<li ng-class="{active : (schedule.displayed.session === session.session)}" ng-repeat="session in schedule.scheduleSession" ng-click="schedule.setDisplayed(schedule.displayed.week,session.session);" ng-show="session.week === schedule.displayed.week || schedule.displayed.week === -1">
+				<a href> Session {{session.session}} </a>
+			</li>
+		</ul>
+		<br>
+		<div class="table-responsive" style="width: 95%; margin: auto;">
+		<table class="table table-striped" style="border: 2px outset #aaaaff">
+				<thead>
+					<th>Week</th>
+					<th>Session</th>
+					<th ng-repeat="col in schedule.componentNames">{{col}}</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="roww in schedule.scheduleSession" ng-show="(schedule.displayed.week === -1 || schedule.displayed.week === roww.week) && (schedule.displayed.session === -1 || schedule.displayed.session === roww.session)">
+						<td style="border: 1px #f5f5f5 outset" ng-show="schedule.displayed.session === -1 || schedule.displayed.session === roww.session"><span class="scheduleData"><strong>{{roww.week}}</strong></span></td>
+						<td style="border: 1px #f5f5f5 outset"><span class="scheduleData"><strong>{{roww.session}}</strong><br>{{roww.sessionDate}}</span></td>
+						<td style="border: 1px #f5f5f5 outset" ng-repeat="datumI in schedule.nums(schedule.componentNames.length)">
+							<span class="scheduleData" ng-show="schedule.rowHasName(roww, schedule.componentNames[datumI])">
+								<ul class="list-group">
+									<li ng-bind-html="subDatum | rawHtml" style="border: 1px inset #aaaaff" class="list-group-item" ng-repeat="subDatum in schedule.rowGetByName(roww,schedule.componentNames[datumI]).values">
+										{{subDatum}}
+									</li>
+								</ul>
+							<!--div ng-repeat="subDatum in schedule.rowGetByName(roww,schedule.componentNames[datumI]).values">
+								{{subDatum}}
+								<hr ng-show="true">
+							</div-->
+						</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<br>
+</div>
+
+<!-- include angular framework -->
+<script type="text/javascript" src="angular.min.js"></script>
+<!-- load our app file -->
+<script type="text/javascript" src="lab2.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+body{
+	background-color: #f0f0f0;
+}
+
+p{
+	/*background-image: radial-gradient(#efefef, #efefef, #d5d5d5);*/
+	background-color: #eeeeee;
+	border: 2px ridge gray;
+	
+	border-radius: 4px;
+
+	padding: 6pt;
+
+	display: inline-block;
+}
+
+tr{
+   background-color: #ffffee;
+}
+
+th{
+	background-color: #efefef;
+}
+
+#top{
+	background-image: radial-gradient(#2f162c, #f0f0f0, #f0f0f0);
+	color: #99e0e0;
+	text-shadow: 0px 0 black, 0 1px black, 1px 0 black, 0 0px black;
+}
+
+#calendar{
+	background-image: radial-gradient(#aaaaaa, #eeeeee, #aaaaaa);
+	border: 2px ridge gray;
+	width: 98vw;
+	max-width: 1600px;
+}
+
+#inner-calendar{
+	background-image: radial-gradient(#ffffff, #eeeeee, #ffffff);
+	border: 2px groove gray;
+	border-radius: 4px;
+}
