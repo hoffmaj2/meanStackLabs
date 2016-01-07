@@ -395,6 +395,14 @@
         sample: ''
     };
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+
     app.controller("ScheduleController", function () {
 
         this.scheduleSession = sS;
@@ -470,6 +478,14 @@
             restrict: 'E',
             templateUrl: "views/schedule.html"
         };
+    });
+
+
+    app.directive("contentItem",function(){
+        return {
+            restrict: 'A',
+            templateUrl: 'templates/contentItem.html'
+        }
     });
 
 

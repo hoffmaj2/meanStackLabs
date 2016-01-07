@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="content">
+<head>
+	<title></title>
+</head>
+
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="lab.css">
+<!-- include angular framework -->
+<script type="text/javascript" src="angular.min.js"></script>
+<!-- load our app file -->
+<script type="text/javascript" src="content.js"></script>
+
+<body>
+
+	<div ng-controller="contentController as content" class="container">
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="datum in content.selectedContent" style="text-align:center; clear:both; border:2px outset blue;">
+				<strong style="text-align:center; display:block">
+					<span style="float:left">{{datum.type + " " + datum.number}}</span>
+					<span style="float:right">{{datum.sessionDue}}</span>
+					<span style=""><a ng-href="{{datum.url}}">{{datum.name}}</a></span>
+				</strong>
+				<div style="padding-left: 10%; padding-right: 10%">
+				<hr ng-show="(datum.sample || datum.solution)">
+				<span ng-show="datum.sample" style="float:left"><a ng-href="{{datum.sample}}">Example</a></span>
+				<span ng-show="datum.solution" style="float:right"><a ng-href="{{datum.solution}}">Solution</a></span>
+				<br>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+</body>
+</html>
