@@ -395,6 +395,14 @@
         sample: ''
     };
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+
     app.controller("ScheduleController", function () {
 
         this.scheduleSession = sS;
@@ -448,6 +456,14 @@
         this.setDisplayed = function (n, m) {
             this.displayed.week = n;
             this.displayed.session = m;
+        }
+    });
+
+
+    app.directive("contentItem",function(){
+        return {
+            restrict: 'A',
+            templateUrl: 'templates/contentItem.html'
         }
     });
 
