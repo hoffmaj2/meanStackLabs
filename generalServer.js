@@ -8,8 +8,8 @@ expressApp.set("port", process.env.PORT || 3000
 expressApp
     .use(express.static('./'))
     .get('*', function (req, res) {
-        res.sendFile('index.html', {
-            root: path.join(dirname, './')
+        res.sendFile('lab.html', {
+            root: path.join('', './')
         });
     }).listen(expressApp.get('port'), function () {
         console.log('Server is listening on port' + expressApp.get('port'));

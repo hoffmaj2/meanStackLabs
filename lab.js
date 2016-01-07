@@ -456,14 +456,16 @@
         }
     });
 
-    app.config(function ($routeProvider) {
+    app.config(function ($routeProvider, $locationProvider) {
+        $locationProvider.html5Mode(true);
         $routeProvider.when('/', {
             templateUrl: 'views/schedule.html',
             controller: 'ScheduleController'
         })
-            .when("/content", {
+            .when("/content/:ctype", {
                 templateUrl: 'views/contentPanel.html',
-                controller: "contentController"
+                controller: "contentController",
+                controllerAs: "contentController"
             });
     });
 
@@ -478,6 +480,15 @@
         return {
             restrict: 'E',
             templateUrl: "views/schedule.html"
+        };
+    });
+
+    app.directive('navBar', function () {
+        return {
+            restrict: 'E',
+            templateUrl: "views/navBar.html"
+            //controller: "contentTypeController",
+            //controllerAs: "types"
         };
     });
 

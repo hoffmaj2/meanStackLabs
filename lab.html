@@ -6,9 +6,11 @@
     <title>
         {{schedule.courseDesignation}} Schedule
     </title>
+    <base href="/">
 </head>
 <body ng-controller="ScheduleController as schedule">
 <top-header></top-header>
+<nav-bar ng-controller="contentTypesController as types"></nav-bar>
 <div ng-view></div>
 <!-- include angular framework -->
 <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
@@ -16,6 +18,5 @@
 <!-- load our app file -->
 <script type="text/javascript" src="lab.js"></script>
 <script type="text/javascript" src="content.js"></script>
-
 </body>
 </html>

@@ -95,23 +95,38 @@
 
     var segmentedData = [];
     var segmentCount = [];
+    var contentTypes = [];
     for(var i = 0; i < allData.length; i++){
         segmentedData[allData[i].type] = [];
-        segmentCount[allData.type] = 0;
+        segmentCount[allData[i].type] = 0;
     }
     for(var i = 0; i < allData.length; i++){
-        segmentedData[allData[i].type][segmentCount[allData.type]] = allData[i];
-        segmentCount[allData.type]++;
+        segmentedData[allData[i].type][segmentCount[allData[i].type]] = allData[i];
+        segmentCount[allData[i].type]++;
     }
+
+    for (var i = 0; i < allData.length; i++) {
+            if (contentTypes.indexOf(allData[i].type) < 0) {
+                contentTypes[contentTypes.length] = allData[i].type;
+            }
+
+        }
 
 
     var app = angular.module('content', []);
 
-    app.controller("contentController", function () {
-        this.fullData = allData;
-        this.data = segmentedData;
-        this.selectedContent = segmentedData["Lab"];
+    /*for (var i = 0; i < contentTypes.length; i++) {
+        app.controller(contentTypes[i] + "Controller", function ($scope, $routeParams) {
+            this.selectedContent = segmentedData[contentTypes[i]];
         });
+    };*/
+
+    app.controller("contentController", function ($routeParams) {
+            this.selectedContent = segmentedData[$routeParams.ctype];
+        });
+    app.controller("contentTypesController", function () {
+        this.contentTypes = contentTypes;
+    });
 
 
 })();
