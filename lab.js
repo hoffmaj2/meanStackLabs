@@ -462,7 +462,7 @@
             templateUrl: 'views/schedule.html',
             controller: 'ScheduleController'
         })
-            .when("/content/:ctype", {
+            .when("/:ctype", {
                 templateUrl: 'views/contentPanel.html',
                 controller: "contentController",
                 controllerAs: "contentController"
