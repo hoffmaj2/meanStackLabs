@@ -1,11 +1,12 @@
 
-<div style="backgroung-color: #a0b0ff" class="container">
+<div style="background-color: #a0b0ff; border: 2px groove gray; padding-top: 2px; padding-bottom: 2px;" class="container">
 <ul class="nav nav-pills">
-	<li>
+	<li style="background-color: #efefe0; border: 2px outset yellow; border-radius: 5px; margin-left: 16px; margin-right: 8px;">
 		<a ng-href="/">Schedule</a>
 	</li>
-	<li ng-repeat="datum in types.contentTypes">
-		<a ng-href="/content/{{datum}}">{{datum}}</a>
+	<li style="background-color: #eeeeee; border: 2px outset yellow; border-radius: 5px; margin-left: 8px; margin-right: 8px;" ng-repeat="datum in types.contentTypes">
+		<a ng-href="/content/{{datum}}">{{datum}}s</a>
 	</li>
 </ul>
 </div>
+<hr>
