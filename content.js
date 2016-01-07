@@ -107,7 +107,6 @@
 
     var app = angular.module('content', []);
 
-
     app.controller("contentController", function () {
         this.fullData = allData;
         this.data = segmentedData;

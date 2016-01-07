@@ -369,7 +369,7 @@
 //////////////////////////////////////////////////////////////////////
 
 
-    var app = angular.module('schedule', ['ngRoute']);
+    var app = angular.module('schedule', ['ngRoute', 'content']);
 
     app.filter("rawHtml", ['$sce', function ($sce) {
         return function (htmlCode) {
@@ -396,9 +396,6 @@
     };
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -459,21 +456,25 @@
         }
     });
 
-    app.config(function($routeProvider) {
+    app.config(function ($routeProvider) {
         $routeProvider.when('/', {
             templateUrl: 'views/schedule.html',
             controller: 'ScheduleController'
-        });
+        })
+            .when("/content", {
+                templateUrl: 'views/contentPanel.html',
+                controller: "contentController"
+            });
     });
 
-    app.directive('topHeader', function() {
+    app.directive('topHeader', function () {
         return {
             restrict: 'E',
             templateUrl: "views/header.html"
         };
     });
 
-    app.directive('schedule', function() {
+    app.directive('schedule', function () {
         return {
             restrict: 'E',
             templateUrl: "views/schedule.html"
@@ -481,7 +482,7 @@
     });
 
 
-    app.directive("contentItem",function(){
+    app.directive("contentItem", function () {
         return {
             restrict: 'A',
             templateUrl: 'templates/contentItem.html'
