@@ -4,10 +4,13 @@
   "main": "lab2.js",
   "dependencies": {
     "angular": "^1.4.8",
+    "angular-route": "^1.4.9",
     "bootstrap": "^3.3.6",
     "express": "^4.13.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "karma": "^0.13.19"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
