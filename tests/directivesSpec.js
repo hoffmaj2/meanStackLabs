@@ -4,7 +4,7 @@ describe('schedule', function () {
     beforeEach(module('schedule'));
 
     // Load the templates
-    beforeEach(module('views/header.html', 'views/navBar.html'));
+    beforeEach(module('views/header.html', 'views/navBar.html', 'views/schedule.html', 'views/contentPanel.html'));
 
     var compile, scope, element;
 
@@ -79,5 +79,31 @@ describe('schedule', function () {
         });
     });
 
-    //TODO schedule.html and contentPanel
+    describe('schedule', function () {
+        beforeEach(inject(function ($compile, $rootScope) {
+            compile = $compile;
+            scope = $rootScope.$new();
+            scope.schedule = {
+                "displayed:" : {week: -1},
+                "componentNames": ["comp1", "comp2"],
+                "weeks": [1, 2, 3]
+
+            };
+
+            element = angular.element('<schedule></schedule>');
+
+            compile(element)(scope);
+            scope.$digest();
+        }));
+
+        it('should have the different components', function () {
+            for (var name in scope.schedule.componentNames) {
+                expect(element.html()).toContain(scope.schedule.componentNames[name]);
+            }
+        });
+
+        it('should have the right number of table columns', function () {
+            expect(element.find('th').length).toEqual(4);
+        });
+    });
 });
