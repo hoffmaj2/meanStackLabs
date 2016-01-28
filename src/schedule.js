@@ -80,4 +80,4 @@ sampleCnf = {
 }
 
 
-console.log(new Schedule(sampleCnf));
+//console.log(new Schedule(sampleCnf));

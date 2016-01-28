@@ -4,6 +4,7 @@
 	<li style="background-color: #efefe0; border: 2px outset yellow; border-radius: 5px; margin-left: 16px; margin-right: 8px;">
 		<a ng-href="/">Schedule</a>
 	</li>
+	{{types.contentTypes}}
 	<li style="background-color: #eeeeee; border: 2px outset yellow; border-radius: 5px; margin-left: 8px; margin-right: 8px;" ng-repeat="datum in types.contentTypes">
 		<a ng-href="/{{datum}}">{{datum}}s</a>
 	</li>

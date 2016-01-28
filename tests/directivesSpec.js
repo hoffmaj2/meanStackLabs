@@ -1,48 +1,83 @@
-describe('ContactsApp', function(){
+describe('schedule', function () {
 
     // Load module that contains the directives
-    beforeEach(module('ContactsApp'));
+    beforeEach(module('schedule'));
 
     // Load the templates
-    beforeEach(module('views/nav.html', 'views/form-field.html'));
+    beforeEach(module('views/header.html', 'views/navBar.html'));
 
-    var compile, scope, element, Contact;
+    var compile, scope, element;
 
-    describe('navMenu', function(){
-
-        beforeEach(inject(function($compile, $rootScope){
+    describe('header', function () {
+        beforeEach(inject(function ($compile, $rootScope) {
             compile = $compile;
             scope = $rootScope.$new();
+            scope.schedule = {
+                "courseName": "the course name",
+                "termNames": ["Fall"],
+                "term": 1,
+                fiscalYear: 2016,
+                "courseDesignation": "designation"
+            };
 
-            element = angular.element('<div><nav-menu></nav-menu></div>');
+            element = angular.element('<top-header></top-header>');
 
             compile(element)(scope);
             scope.$digest();
         }));
 
-        it('should create a clickable list of links', function(){
-            var menus = element.find('ul.navbar-nav');
-            var items = menus.eq(0).find('li');
-            var logout = menus.eq(1).find('li');
-
-            expect(menus.length).toBe(2);
-
-            expect(items.length).toBe(2);
-            expect(items.eq(0).text()).toEqual('All Contacts');
-
-            expect(logout.length).toBe(1);
-            expect(logout.eq(0).text()).toEqual('Log Out');
+        it('should have the course title', function () {
+            expect(element.html()).toContain(scope.schedule.courseName);
         });
 
-        it('should set active class on menu item', function(){
-            var menus = element.find('ul.navbar-nav li');
-            expect(menus.eq(0).hasClass('active')).toBe(false);
-            scope.$apply(function(){
-                scope.PAGE = 'all';
-            });
-
-            expect(menus.eq(0).hasClass('active')).toBe(true);
+        it('should have the course designation', function () {
+            expect(element.html()).toContain(scope.schedule.courseDesignation);
         });
 
+        it('should have the course name', function () {
+            expect(element.html()).toContain(scope.schedule.courseName);
+        });
+
+        it('should have the course term', function () {
+            expect(element.html()).toContain(scope.schedule.termNames[scope.schedule.term - 1]);
+        });
+
+        it('should have the course year', function () {
+            expect(element.html()).toContain(scope.schedule.fiscalYear);
+        });
+
+        it('should have the term identifier', function () {
+            expect(element.html()).toContain("" + scope.schedule.fiscalYear + scope.schedule.term + "0");
+        });
     });
+
+    describe('navBar', function () {
+        beforeEach(inject(function ($compile, $rootScope) {
+            compile = $compile;
+            scope = $rootScope.$new();
+            scope.types = {
+                "contentTypes": ["Homework", "Lab"]
+            };
+
+            element = angular.element('<nav-bar></nav-bar>');
+
+            compile(element)(scope);
+            scope.$digest();
+        }));
+
+        it('should have the course header tabs', function () {
+            for (var datum in scope.types.contentTypes) {
+                expect(element.html()).toContain(datum);
+            }
+        });
+
+        it('should the course links', function () {
+            for (var i=0;i<scope.types.contentTypes.length;i++) {
+                var datum = scope.types.contentTypes[i];
+                expect(element.html()).toContain("ng-href=\"/" + datum + "\"");
+            }
+        });
+    });
+
+    //TODO schedule.html and contentPanel
 });
