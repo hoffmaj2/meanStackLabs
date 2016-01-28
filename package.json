@@ -9,9 +9,18 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoffmaj2/meanStackLabs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hoffmaj2/meanStackLabs/issues"
+  },
+  "homepage": "https://github.com/hoffmaj2/meanStackLabs#readme",
   "description": ""
 }
